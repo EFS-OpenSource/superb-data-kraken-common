@@ -1,0 +1,19 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: sdk-commons
+  description: utility package providing domain models and dtos for organizations and spaces
+  annotations:
+    dev.azure.com/project-repo: EFS-SDK/sdk-commons
+    backstage.io/techdocs-ref: dir:.
+  tags:
+    - java
+    - spring-boot
+    - sdk
+    - sdk-metadata
+    - sdk-datastore
+spec:
+  type: library
+  lifecycle: production
+  owner: team-sdk
+  system: sdk

@@ -1,0 +1,24 @@
+trigger:
+  batch: true
+  branches:
+    include:
+      - main
+pool:
+  vmImage: 'ubuntu-latest'
+steps:
+  - task: MavenAuthenticate@0
+    inputs:
+      artifactsFeeds: $(snapshotRepoId), $(releaseRepoId)
+  - task: Maven@3
+    displayName:
+    inputs:
+      mavenPomFile: 'pom.xml'
+      goals: deploy
+      options: '-Drelease-repo.id=$(releaseRepoId) -Drelease-repo.url=$(releaseRepoUrl) -Dsnapshot-repo.id=$(snapshotRepoId) -Dsnapshot-repo.url=$(snapshotRepoUrl)'
+      publishJUnitResults: false
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '1.17'
+      mavenVersionOption: 'Default'
+      mavenAuthenticateFeed: false
+      effectivePomSkip: false
+      sonarQubeRunAnalysis: false
